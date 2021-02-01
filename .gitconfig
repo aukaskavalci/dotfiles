@@ -1,0 +1,41 @@
+[user]
+	name = Halil Kaskavalci
+    email = 1646238+kaskavalci@users.noreply.github.com
+	signingkey = CC23AFDF572425A7
+[alias]
+	s = status -suno
+	ss = status -s
+	l = log --oneline --decorate
+	d = diff
+	ds = !git -P  diff --stat
+	di = !git -P diff --stat --cached
+	dc = diff --name-status -M --ignore-submodules
+	dt = difftool
+	b = branch
+	ls = ls-files
+	c = commit -S -m
+	co = checkout
+	a = add -u
+	f = fetch --all
+	m = merge
+	mt = mergetool
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	p = push
+    pp = pull -p
+	done = "!f() { git checkout main && git branch -D @{-1}; }; f"
+[pager]
+    branch = false
+
+[receive]
+    # Prevent history changing git push --force commands
+    denyNonFastForwards = true
+[merge]
+	tool = meld
+[diff]
+	guitool = meld
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2
+[commit]
+	gpgsign = true
+[push]
+	default = current
