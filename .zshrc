@@ -165,11 +165,8 @@ alias vi='vim'
 alias ll='ls -alGh'
 alias l='ls -lGh'
 alias lld='ll -d */'
-alias cleardns='sudo killall -HUP mDNSResponder'
+alias flushdns='sudo killall -HUP mDNSResponder'
 alias mklog='vim $(date '+%Y-%m-%d').md'
-alias cleardocker='docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
-
-# cors free chrome.
 alias cors-free-chrome='mkdir /tmp/test & open -a Google\ Chrome --args --disable-web-security --user-data-dir /tmp/test'
 
 #vars
@@ -183,3 +180,6 @@ function lb() {
 
 export GOPATH=~/workspace/gow
 export CDPATH=.:$GOPATH/src/github.com:$GOPATH/src/golang.org:$GOPATH/src:~/workspace
+
+# secrets / keys
+source ~/secrets/secrets

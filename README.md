@@ -2,6 +2,12 @@
 
 My dotfiles.
 
+## Where are the keys?
+
+All keys are under `secrets` directory, which is a git repository too. However,
+it is managed by [keybase](https://keybase.io/blog/encrypted-git-for-everyone)
+end-to-end encrypted git.
+
 ## How to manage dotfiles
 
 1. Create a git repository
