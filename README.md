@@ -4,9 +4,25 @@ My dotfiles.
 
 ## Where are the keys?
 
-All keys are under `secrets` directory, which is a git repository too. However,
+All keys are under `.private` directory, which is a git repository too. However,
 it is managed by [keybase](https://keybase.io/blog/encrypted-git-for-everyone)
 end-to-end encrypted git.
+
+Expected contents of `.private` directory:
+
+```sh
+.private
+├── .ssh
+└── keys
+```
+
+PGP keys are managed by
+[keybase](https://keybase.io/blog/encrypted-git-for-everyone). Export keybase
+key to local GPG
+
+```sh
+keybase pgp export --secret | gpg --allow-secret-key --import
+```
 
 ## How to manage dotfiles
 
@@ -24,7 +40,7 @@ mv ~/.vimrc .
 ln -s /Users/hck/dotfiles/.vimrc /Users/hck/.vimrc
 ```
 
-## Migrate on a new computer
+Migrate on a new computer:
 
 1. Clone this repository
 2. Create symlinks to your home directory

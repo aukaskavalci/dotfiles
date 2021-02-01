@@ -8,8 +8,7 @@
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-# ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -22,7 +21,7 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -69,6 +68,7 @@ plugins=(
   zsh-completions
   gcloud
   docker
+  helm
 )
 
 autoload -U compinit && compinit
@@ -109,47 +109,46 @@ source $ZSH/oh-my-zsh.sh
 # . /Users/kaskavalci/Library/Python/3.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # Customizing `context` colors for root and non-root users
-#POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="cyan"
-#POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="white"
-#POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND="red"
-#POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND="blue"
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="cyan"
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="white"
+POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND="red"
+POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND="blue"
 
-# POWERLEVEL9K_MODE='awesome-fontconfig'
-# POWERLEVEL9K_MODE="awesome-patched"
+POWERLEVEL9K_MODE='awesome-fontconfig'
 
-# # Advanced `vcs` color customization
-# POWERLEVEL9K_VCS_FOREGROUND='white'
-# POWERLEVEL9K_VCS_DARK_FOREGROUND='black'
-# POWERLEVEL9K_VCS_BACKGROUND='green'
+# Advanced `vcs` color customization
+POWERLEVEL9K_VCS_FOREGROUND='white'
+POWERLEVEL9K_VCS_DARK_FOREGROUND='black'
+POWERLEVEL9K_VCS_BACKGROUND='green'
 
-# # If VCS changes are detected:
-# POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='red'
-# POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='cyan'
+# If VCS changes are detected:
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='red'
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='cyan'
 
-# #dir colors
+#dir colors
 
-# # If VCS changes are detected:
-# POWERLEVEL9K_DIR_FOREGROUND='black'
-# POWERLEVEL9K_DIR_BACKGROUND='white'
+# If VCS changes are detected:
+POWERLEVEL9K_DIR_FOREGROUND='black'
+POWERLEVEL9K_DIR_BACKGROUND='white'
 
-# #prefixes
-# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-# POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX=">"
+#prefixes
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX=">"
 
-# POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="white"
-# POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="black"
-# POWERLEVEL9K_DIR_HOME_BACKGROUND="white"
-# POWERLEVEL9K_DIR_HOME_FOREGROUND="black"
-# POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="white"
-# POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="black"
-# POWERLEVEL9K_STATUS_OK_BACKGROUND="green"
-# POWERLEVEL9K_STATUS_OK_FOREGROUND="black"
-# POWERLEVEL9K_STATUS_ERROR_BACKGROUND="red"
-# POWERLEVEL9K_STATUS_ERROR_FOREGROUND="black"
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="white"
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="black"
+POWERLEVEL9K_DIR_HOME_BACKGROUND="white"
+POWERLEVEL9K_DIR_HOME_FOREGROUND="black"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="white"
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="black"
+POWERLEVEL9K_STATUS_OK_BACKGROUND="green"
+POWERLEVEL9K_STATUS_OK_FOREGROUND="black"
+POWERLEVEL9K_STATUS_ERROR_BACKGROUND="red"
+POWERLEVEL9K_STATUS_ERROR_FOREGROUND="black"
 
-# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time)
 
 # color
 export CLICOLOR=1
@@ -160,13 +159,18 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 #aliases
+alias python='python3'
 alias p='pass -c'
 alias vi='vim'
 alias ll='ls -alGh'
 alias l='ls -lGh'
 alias lld='ll -d */'
-alias flushdns='sudo killall -HUP mDNSResponder'
+alias k='kubectl'
+alias kc='kubecolor'
+alias flushdns='sudo dscacheutil -flushcache'
+alias di="docker images --format '{{.Repository}}:{{.Tag}}' | grep \"$1\""
 alias mklog='vim $(date '+%Y-%m-%d').md'
+alias cyberlogs="log stream --predicate '(subsystem == \"ch.sudo.cyberduck\") && (category == \"transcript\")' --level info"
 alias cors-free-chrome='mkdir /tmp/test & open -a Google\ Chrome --args --disable-web-security --user-data-dir /tmp/test'
 
 #vars
@@ -181,5 +185,8 @@ function lb() {
 export GOPATH=~/workspace/gow
 export CDPATH=.:$GOPATH/src/github.com:$GOPATH/src/golang.org:$GOPATH/src:~/workspace
 
-# secrets / keys
-source ~/secrets/secrets
+# keys
+source ~/.private/keys
+
+# Bring some light to dull stdout
+ [[ -s "/usr/local/etc/grc.zsh" ]] && source /usr/local/etc/grc.zsh

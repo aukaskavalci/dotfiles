@@ -6,4 +6,13 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zs
 echo Install zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-echo TODO: install powerline https://powerline.readthedocs.io/en/master/installation/osx.html
+echo Powerline
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+echo Link Brewfile
+ln -s mac/Brewfile ~/Brewfile
+
+echo Link .ssh keys
+ln -s ~/.private/.ssh ~/.ssh
+
+# Install Brewfile: brew bundle install
